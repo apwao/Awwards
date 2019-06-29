@@ -40,6 +40,7 @@ def view_project(request):
     submits their project plus all other projects uploaded by other users
     """
     current_user=request.user
+    current_user_name=current_user.username
     projects=Project.objects.all()
-    return render(request, 'view_projects.html')
+    return render(request, 'view_projects.html',{'projects':projects, 'current_user_name':current_user_name})
     
