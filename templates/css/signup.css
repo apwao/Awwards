@@ -1,0 +1,12 @@
+body{
+    background-repeat: no-repeat;
+}
+.well #signup{
+    height: 100px;
+    width: 100px;
+    border: solid;
+    border-width: 1px;
+    background-color: navy;
+    border-top-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+}
