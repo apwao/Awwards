@@ -1,0 +1,36 @@
+{% load bootstrap3 %}
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+		{{form.media}}
+		{% block styles %}
+
+		{% bootstrap_css %}
+            
+        {% endblock %}
+</head>
+<body class="container">
+    {% block content%}
+    <div class="well">
+
+        <form action="{% url 'upload_project' %}" method="POST">
+            {% csrf_token %}
+            {% bootstrap_form project_form layout='inline'%}
+            <input type="submit" class="btn btn-success btn-sm" value="Post">
+		</form>
+		
+
+        {% block scripts %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		{% bootstrap_javascript %} 
+		{% endblock%}
+    </div>
+    {% endblock %}
+</body>
+</html>
