@@ -21,8 +21,32 @@ class Project(models.Model):
     posted_by=models.ForeignKey(User, null=True, on_delete=models.CASCADE) 
     
     
+    def save_project(self):
+        """
+        save project method to save project details provided 
+        by the user to the database
+        """
+        self.save()
+        
+    def delete_project(self):
+        """
+        delete_project method to remove a project from the database
+        """
+        self.delete()
+        
+    def update_project(self):
+        """
+        update_project method to replace details of a given
+        project in the database with new ones
+        """
+        self.update()
         
     
+    def __str__(self):
+        return self.name      
+        
+            
+
     
     
     
