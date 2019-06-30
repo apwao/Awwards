@@ -21,20 +21,29 @@ def upload_project(request):
     providing details about their project and uploading them onto the application 
     for vetting
     """
+    print('hello')
     current_user = request.user
-    current_user_name = current_user.current_user_name
+    print(current_user)
+    current_user_name = current_user.username
+    print(current_user_name)
     if request.method == 'POST':
+        print('True')
         form = ProjectForm(request.POST, request.FILES)
+        print(form)
         if form.is_valid():
-            project_post = form.save()
-        return redirect('view_project')
+            print('---' * 30)
+            print('True')
+            project_post = form.save(commit=True)
+            print('**' * 20)
+            print(project_post)
+        return redirect('view_projects')
     else:   
         project_form=ProjectForm()
         
     return render(request, 'upload_project.html', {'project_form':project_form,"current_user_name":current_user_name})
 
 @login_required(login_url='/accounts/login')
-def view_project(request):
+def view_projects(request):
     """
     view_project view function to display the projects after the user 
     submits their project plus all other projects uploaded by other users
@@ -42,5 +51,5 @@ def view_project(request):
     current_user=request.user
     current_user_name=current_user.username
     projects=Project.objects.all()
-    return render(request, 'view_projects.html',{'projects':projects, 'current_user_name':current_user_name})
+    return render(request, 'view_projects.html',{'projects':projects, 'current_user_name':current_user})
     
