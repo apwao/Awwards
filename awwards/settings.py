@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'bootstrap3',
     'projects',
     'tinymce',
+    'url_or_relative_url_field',
 ]
 
 MIDDLEWARE = [
@@ -127,4 +128,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+LOGIN_REDIRECT_URL='/view_projects/'
+
