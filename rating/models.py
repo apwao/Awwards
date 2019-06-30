@@ -15,3 +15,25 @@ class Rating(models.Model):
     average_vote=models.IntegerField(default=o)
     project_id=models.ForeignKey(Project, null=True, on_delete=models.CASCADE)
     
+
+    def save_rating(self):
+        """
+        save_rating method to add a rating to the database
+        """
+        self.save()
+        
+    def delete_rating(self):
+        """
+        delete_rating method to remove a rating from the database
+        """
+        self.delete()
+        
+    def update_rating(self):
+        """
+        update_rating method to replace an existing rating and its details 
+        in the database with new ones
+        """
+        self.update()
+        
+    def __str__(self):
+        return self.name
