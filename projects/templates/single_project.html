@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>|Single Project|</title>
+
+    <!-- Font Awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+	<!-- Bootstrap core CSS -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Material Design Bootstrap -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.3/css/mdb.min.css" rel="stylesheet">
+
+</head>
+<body>
+    <div>
+        <h2 class="text-center">Projects Submitted</h2>
+    </div>
+    <br>
+    <hr>
+    <br>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card card-image" style="background-image: {{project.project_image.url}}">
+                <!-- Content -->
+                <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
+                    <div>
+                        <h5 class="pink-text"><i class="fas fa-chart-pie"></i></h5>
+                        <h3 class="card-title pt-2"><strong>{{project.project_title}}</strong></h3>
+                        <p>{{project.project_description}}</p>
+                    </div>
+                </div>
+                <a class="btn btn-pink" href="{{url 'rate_form' }}"><i class="fas fa-clone left"></i> Vote</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
