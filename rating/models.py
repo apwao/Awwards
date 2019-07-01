@@ -1,5 +1,7 @@
 from django.db import models
 from projects.models import Project
+from django.core.validators import MaxValueValidator
+from django.contrib.auth.models import User
 
 
 # Create your models here.
@@ -9,12 +11,12 @@ class Rating(models.Model):
     based on the usability rating, content rating and design rating
     """
     
-    usability_vote=models.IntegerField(default=o)
-    design_vote=models.IntegerField(default=o)
-    content_vote=models.IntegerField(default=o)
-    average_vote=models.IntegerField(default=o)
-    project_id=models.ForeignKey(Project, null=True, on_delete=models.CASCADE)
-    
+    usability_vote=models.IntegerField(default=0,validators=[MaxValueValidator(10)])
+    design_vote=models.IntegerField(default=0,validators=[MaxValueValidator(10)])
+    content_vote=models.IntegerField(default=0,validators=[MaxValueValidator(10)])
+    average_vote=models.IntegerField(default=0,validators=[MaxValueValidator(10)])
+    project_id=models.IntegerField(default=0)
+    voter_id=models.ForeignKey(User,null=True, on_delete=models.CASCADE)
 
     def save_rating(self):
         """
@@ -35,5 +37,6 @@ class Rating(models.Model):
         """
         self.update()
         
+   
     def __str__(self):
         return self.name
