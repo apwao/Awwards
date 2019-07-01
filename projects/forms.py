@@ -11,5 +11,5 @@ class ProjectForm(forms.ModelForm):
     class Meta:
         model=Project
         fields=('project_title','project_image','project_description','live_link')
-        exclude=['upload_date']
+        # exclude=['upload_date','usability_rating','design_rating','content_rating','posted_by','overall_rating']
         
