@@ -22,5 +22,6 @@ urlpatterns = [
     url(r'^accounts/', include('registration.backends.simple.urls')),
     url(r'^logout/$', views.logout, {"next_page":'/'}),
     url(r'', include('projects.urls')),
-    url(r'^rate/(\d+)/$',include('rating.urls')),
+    url(r'^rate/',include('rating.urls')),
+    url(r'^profile/',include('user_profile.urls'))
 ]
