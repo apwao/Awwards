@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'projects',
     'tinymce',
     'url_or_relative_url_field',
-    'rating'
+    'rating',
+    'user_profile'
 ]
 
 MIDDLEWARE = [
