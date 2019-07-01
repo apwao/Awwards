@@ -14,12 +14,11 @@ class Project(models.Model):
     project_description=HTMLField()
     live_link=URLOrRelativeURLField()
     upload_date=models.DateTimeField(auto_now_add=True)
-    posted_by=models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     usability_rating=models.IntegerField(default=0)
     design_rating=models.IntegerField(default=0)
     content_rating=models.IntegerField(default=0)  
     posted_by=models.ForeignKey(User, null=True, on_delete=models.CASCADE) 
-    
+    overall_rating=models.IntegerField(default=0)
     
     def save_project(self):
         """
@@ -43,7 +42,7 @@ class Project(models.Model):
         
     
     def __str__(self):
-        return self.name      
+        return self.project_title     
         
             
 
