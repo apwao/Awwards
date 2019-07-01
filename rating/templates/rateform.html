@@ -1,0 +1,42 @@
+{% load bootstrap3 %}
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>|Rate Me|</title>
+</head>
+<body>
+	{% block styles %}
+	{% bootstrap_css %}	
+	{% endblock %}
+	
+	{% block content %}
+
+	<div class="container">
+		<div class="jumbotron">
+			<p class="text-center">Vote for project based on Usability, Design and Content</p>
+			<p class="text-center">Lowest vote: 0</p>
+			<p class="text-center">Highest vote: 10</p>
+		</div>
+		<form action="{% url 'rate_project' 1 %}" method ='post' enctype='multipart/form-data'>
+			{% csrf_token %}
+			{% bootstrap_form rateform layout='inline'%}
+			<input type="submit" class="btn btn-success btn-lg" value="Post">
+			
+		</form>
+	</div>
+
+	{% endblock%}
+
+
+	{% block scripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    {% bootstrap_javascript %}
+    {% endblock %}
+    
+</body>
+</html>
