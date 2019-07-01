@@ -19,7 +19,7 @@
     {% block content%}
     <div class="well">
 
-        <form action="{% url 'upload_project' %}" method="POST">
+        <form action="{% url 'upload_project' %}" method="POST" enctype='multipart/form-data'>
             {% csrf_token %}
             {% bootstrap_form project_form layout='inline'%}
             <input type="submit" class="btn btn-success btn-sm" value="Post">
