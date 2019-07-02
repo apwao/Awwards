@@ -13,12 +13,38 @@ from django.http  import HttpResponse
 
 # Create your views here.
 @login_required(login_url='/accounts/login')
-def rate_form(request):
+def rate_form(request, id):
     """
     rate_form view function to display the rating form to the user
     """
-    rateform=RatingForm()
-    return render(request, 'rateform.html', {'rateform':rateform})
+    # get project to be rated from the DB
+    project=Project.objects.get(id=id)
+    current_user = request.user
+    # get all the ratings associated with that project from the ratings table
+    ratings=Rating.objects.filter(project_id=project.id)
+    # create a rating form and pass it the request values of the post method
+    if request.method == 'POST':
+        form = RatingForm(request.POST)
+        if form.is_valid():
+        
+            # save the form in a variable instead of sending directly to db
+            user_rating = form.save(commit=False)
+            
+            # Fixing values for the other fields in the rating model that 
+            # don't come from the user
+            user_rating.average_vote=round((user_rating.usability_vote + user_rating.content_vote + user_rating.design_vote)/3)
+            print('-' * 30)
+            print(project.id)
+            user_rating.project_id=project
+            
+            user_rating.voter_id=current_user
+            
+            user_rating.save()
+            return redirect('view_projects')
+    else: 
+        rateform=RatingForm()
+    
+    return render(request, 'rateform.html', {'rateform':rateform, 'project':project})
 
 @login_required(login_url='/accounts/login')
 def rate_project(request, project_id):
@@ -28,6 +54,7 @@ def rate_project(request, project_id):
     rating which will be stored in the database
     """
     current_user=request.user
+    
     # get project to be rated from the DB
     project=Project.objects.get(id=project_id)
     # get all the ratings associated with that project from the ratings table
@@ -43,20 +70,14 @@ def rate_project(request, project_id):
         
         # Fixing values for the other fields in the rating model that 
         # don't come from the user
-        user_rating.average_vote=round((rateform.usability_vote + rateform.content_vote + rateform.design_vote)/3,2)
-        user_rating.project_id=project.id
-        user_rating.voter_id=current_user.id
+        user_rating.average_vote=round((user_rating.usability_vote + user_rating.content_vote + user_rating.design_vote)/3,2)
+        print('-' * 30)
+        print(project.id)
+        user_rating.project_id=project
         
-        # get all ratings for a specific project
-        all_ratings=Rating.objects.filter(project_id=project.id)
-        average_rates=[]
+        user_rating.voter_id=current_user
         
-        for rating in all_ratings:
-            average_rates.append(rating.average_vote)
-            
-        final_rates=sum(average_rates)
-        
-        user_rating.save()
+        # user_rating.save()
         return redirect('view_projects')
     else:
         rateform=RatingForm()
