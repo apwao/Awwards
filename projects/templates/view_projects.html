@@ -13,7 +13,7 @@
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.3/css/mdb.min.css" rel="stylesheet">
 	</head>
 
-	<body class="container">
+	<body class="container" background="">
 		<!--Navbar-->
 		<nav class="navbar navbar-expand-lg navbar-dark primary-color">
 			<!-- Navbar brand -->
@@ -39,13 +39,16 @@
 						<a class="nav-link" href="/upload_project/">Submit Project</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#">Create a profile</a>
+						<a class="nav-link" href="/profile/">Create a profile</a>
 					</li>
+					<li class="nav-item">
+							<a class="nav-link" href="/profile/view_profile/">View your profile</a>
+						</li>
 					<li class="nav-item">
 						<a class="nav-link" href="/logout">Logout</a>
 					</li>
 					<!-- Dropdown -->
-					<li class="nav-item dropdown">
+					<!-- <li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false">Dropdown</a>
 						<div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
@@ -53,13 +56,13 @@
 							<a class="dropdown-item" href="#">Another action</a>
 							<a class="dropdown-item" href="#">Something else here</a>
 						</div>
-					</li>
+					</li> -->
 				</ul>
 				<!-- Links -->
 				
-				<form class="form-inline">
+				<form class="form-inline" action="{% url 'search'%}" method="GET">
 					<div class="md-form my-0">
-					<input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+					<input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="find_project">
 					</div>
 				</form>
 			</div>
