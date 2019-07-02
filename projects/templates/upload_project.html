@@ -15,14 +15,14 @@
             
         {% endblock %}
 </head>
-<body class="container">
+<body class="container" background="https://images.pexels.com/photos/952670/pexels-photo-952670.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
     {% block content%}
     <div class="well">
 
         <form action="{% url 'upload_project' %}" method="POST" enctype='multipart/form-data'>
             {% csrf_token %}
             {% bootstrap_form project_form layout='inline'%}
-            <input type="submit" class="btn btn-success btn-sm" value="Post">
+            <input type="submit" class="btn btn-pink btn-sm" value="Post">
 		</form>
 		
 
