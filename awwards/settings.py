@@ -43,7 +43,9 @@ INSTALLED_APPS = [
     'tinymce',
     'url_or_relative_url_field',
     'rating',
-    'user_profile'
+    'user_profile',
+    'rest_framework',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
@@ -133,4 +135,10 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGIN_REDIRECT_URL='/view_projects/'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES':(
+        'rest_framework.authentication.TokenAuthentication'
+    )
+}
 
