@@ -5,6 +5,6 @@ from django.conf.urls.static import static
 
 urlpatterns=[
     
-    url(r'^rate_form/',views.rate_form, name='rate_form'),
+    url(r'^rate_form/(\d+)/',views.rate_form, name='rate_form'),
     url(r'^rate_project/(\d+)/',views.rate_project, name='rate_project'),
 ]
