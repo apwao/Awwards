@@ -11,11 +11,11 @@ class Rating(models.Model):
     based on the usability rating, content rating and design rating
     """
     
-    usability_vote=models.IntegerField(default=0,validators=[MaxValueValidator(10)])
-    design_vote=models.IntegerField(default=0,validators=[MaxValueValidator(10)])
-    content_vote=models.IntegerField(default=0,validators=[MaxValueValidator(10)])
-    average_vote=models.IntegerField(default=0,validators=[MaxValueValidator(10)])
-    project_id=models.IntegerField(default=0)
+    usability_vote=models.IntegerField()
+    design_vote=models.IntegerField()
+    content_vote=models.IntegerField()
+    average_vote=models.FloatField()
+    project_id=models.ForeignKey(Project)
     voter_id=models.ForeignKey(User,null=True, on_delete=models.CASCADE)
 
     def save_rating(self):
