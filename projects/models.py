@@ -13,12 +13,10 @@ class Project(models.Model):
     project_image=models.ImageField(upload_to='projects/')
     project_description=HTMLField()
     live_link=URLOrRelativeURLField()
-    upload_date=models.DateTimeField(auto_now_add=True)
-    usability_rating=models.IntegerField(default=0)
-    design_rating=models.IntegerField(default=0)
-    content_rating=models.IntegerField(default=0)  
-    posted_by=models.ForeignKey(User, null=True, on_delete=models.CASCADE) 
-    overall_rating=models.IntegerField(default=0)
+    upload_date=models.DateTimeField(auto_now_add=True) 
+    # posted_by=models.ForeignKey(User,default=1, on_delete=models.CASCADE) 
+    posted_by=models.ForeignKey(User,default=1, on_delete=models.CASCADE) 
+    # overall_rating=models.IntegerField(default=0)
     
     def save_project(self):
         """
@@ -39,6 +37,15 @@ class Project(models.Model):
         project in the database with new ones
         """
         self.update()
+    
+    @classmethod    
+    def search_project(cls, search_term):
+        """
+        searched_project method that finds the searched project
+        in the database
+        """
+        searched_project=Project.objects.filter(project_title__icontains=search_term)
+        return searched_project
         
     
     def __str__(self):
