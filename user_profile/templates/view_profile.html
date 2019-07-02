@@ -1,0 +1,49 @@
+{% load bootstrap3 %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>|Profile|</title>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
+</head>
+<body class="container">
+    <div class="container">
+        <hr>
+        <br>
+        <h3 class="text-center">Your Profile</h3>
+        <br>
+        <hr>
+        <div class="row">
+            <div class="col-md-3"></div>
+
+            <div class="col-md-6">
+                <div class="span2">
+                    <img src="{{user_profile.profile_photo.url}}"  alt="" class="img-rounded">
+                </div>
+                <div class="span7">
+                    <blockquote>
+                        <p><strong>Username:</strong> {{current_user}}</p>
+                        <br>
+                        <h5>Bio:</h5>
+                        <hr>
+                        <cite title="Source Title">{{user_profile.bio}}</cite>
+                        
+                    </blockquote>
+                    <button class="btn btn-sm">Edit Profile</button>
+                    <!-- <p>
+                        <i class="icon-envelope"></i> masterwayne@batman.com <br>
+                        <i class="icon-globe"></i> www.bootsnipp.com <br>
+                        <i class="icon-gift"></i> January 30, 1974
+                    </p> -->
+                </div>
+            </div>
+            <div class="col-md-3"> </div>
+        </div>
+    </div>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</body>
+</html>
