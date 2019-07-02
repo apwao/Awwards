@@ -27,3 +27,13 @@ class Profile(models.Model):
         update_profile method to replace a profile and its details in the database
         """
         self.update()
+        
+    @classmethod
+    def search_profile(cls,username):
+        """
+        search_profile class method that queries database and returns the profile
+        searched
+        """
+        profile=Profile.objects.filter(user_id=username)
+        
+        return profile
