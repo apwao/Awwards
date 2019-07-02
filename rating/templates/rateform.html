@@ -7,9 +7,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>|Rate Me|</title>
+	<title>|Rate Me|</title>
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+	<!-- Bootstrap core CSS -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Material Design Bootstrap -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.3/css/mdb.min.css" rel="stylesheet">
+
 </head>
-<body>
+<body background="https://images.pexels.com/photos/952670/pexels-photo-952670.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
 	{% block styles %}
 	{% bootstrap_css %}	
 	{% endblock %}
@@ -22,10 +29,10 @@
 			<p class="text-center">Lowest vote: 0</p>
 			<p class="text-center">Highest vote: 10</p>
 		</div>
-		<form action="{% url 'rate_project' 1 %}" method ='post' enctype='multipart/form-data'>
+		<form action="{% url 'rate_form' project.id %}" method ='post' enctype='multipart/form-data'>
 			{% csrf_token %}
 			{% bootstrap_form rateform layout='inline'%}
-			<input type="submit" class="btn btn-success btn-lg" value="Post">
+			<input type="submit" class="btn btn-pink btn-lg" value="Post">
 			
 		</form>
 	</div>
