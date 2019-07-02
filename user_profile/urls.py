@@ -6,5 +6,6 @@ from . import views
 
 urlpatterns=[
     url('^$', views.create_profile, name='create_profile'),
-    url('^view_profile/$', views.view_profile, name='view_profile')
+    url('^view_profile/$', views.view_profile, name='view_profile'),
+    url(r'^api/profile/$', views.ProfileList.as_view()),
 ]
