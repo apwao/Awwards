@@ -43,15 +43,12 @@ def create_profile(request):
 
 @login_required(login_url='/accounts/login/')
 def view_profile(request):
-    print(request)
-    """
-    """
-    current_user=request.user
-    print('-' * 30)
-    print(current_user.id)
-    user_profile=Profile.objects.get(user_id=current_user.id)
-    # all_user_photos=Image.objects.filter(editor=current_user.id)
-    return render(request, 'view_profile.html',{'user_profile':user_profile,'current_user':current_user})
+    try:
+        current_user=request.user 
+        user_profile=Profile.objects.get(user_id=current_user.id)
+    except:
+        return redirect(create_profile)
+    return render(request, 'view_profile.html',{'user_profile':user_profile})
 
 class ProfileList(APIView):
     """
