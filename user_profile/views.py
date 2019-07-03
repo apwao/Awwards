@@ -9,6 +9,18 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializer import ProfileSerializer
 from rest_framework import status
+from rest_framework.permissions import SAFE_METHODS, BasePermission
+
+class IsAdminOrReadOnly(BasePermission):
+    """
+    """
+    def has_permission(self,request,view):
+        """
+        """
+        if request.method in SAFE_METHODS:
+            return True
+        else:
+            return request.user.is_staff
 
 # Create your views here.
 @login_required(login_url='/accounts/login/')
@@ -57,4 +69,5 @@ class ProfileList(APIView):
         if serializers.is_valid():
             serializers.save()
             return Response(serializers.data, status=status.HTTP_201_CREATED)
+        permission_classes=(IsAdminOrReadOnly)
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)

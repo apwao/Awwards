@@ -12,6 +12,7 @@ from rest_framework.views import APIView
 from .models import  Project
 from .serializer import ProjectSerializer
 from rest_framework import status
+from rest_framework.permissions import SAFE_METHODS, BasePermission
 
 
 
@@ -115,4 +116,5 @@ class ProjectList(APIView):
         if serializers.is_valid():
             serializers.save()
             return Response(serializers.data, status=status.HTTP_201_CREATED)
+        permission_classes=(IsAdminOrReadOnly)
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
